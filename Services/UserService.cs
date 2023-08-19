@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModels;
 
 namespace Services
 {
@@ -17,14 +18,34 @@ namespace Services
             string ConnectionString = "Data Source=DESKTOP-JLPQILD; Initial Catalog=DefineUserRole; Persist Security Info=True;User ID=sa;Password=3861438178_Kaisoo8812";
             dbContext = new DefineUserRoleContext(ConnectionString);
         }
-        public List<User> Read()
+        public List<UserViewModel> Read()
         {
-            List<User> allUsers = dbContext.Users.ToList();
-            if (allUsers.Count == 0)
+            //List<User> allUsers = dbContext.Users.ToList();
+            //List<UserViewModel> userModels = new List<UserViewModel>();
+            //foreach (var user in allUsers)
+            //{
+            //    userModels.Add(new UserViewModel()
+            //    {
+            //        Id = user.Id,
+            //        Name = user.Name,
+            //        LastName = user.LastName,
+            //        UserName = user.UserName,
+            //        Password = user.Password,
+            //        Age = this.CalculateAge(user.DataOfBirth)
+            //    });
+            //}
+            return dbContext.Users.Select(user => new UserViewModel()
             {
-                Console.WriteLine("The list has no values. Please add some to it.");
-            }
-            return allUsers;
+                Id = user.Id,
+                Name = user.Name,
+                LastName = user.LastName,
+                FullName = user.Name + user.LastName,
+                UserName = user.UserName,
+                Password = user.Password,
+                Age = DateTime.Now.Year - user.DataOfBirth.Year
+            }).ToList();
+            //var x = dbContext.Users.Select(user => user.Name).ToList();
+            //return userModels;
         }
         public void Create(int id, string name, string lastName, string userName, string password, DateTime dataOfBirth)
         {
@@ -53,6 +74,14 @@ namespace Services
                 dbContext.SaveChanges();
             }
         }
+        //private int CalculateAge(DateTime dataOfBirth)
+        //{
+        //    //تفریق تاریخ تولد کاربر از تاریخ روز
+        //    int age = DateTime.Now.Year - dataOfBirth.Year;
+
+        //    //برگرداندن سن
+        //    return age;
+        //}
         public User GetById(int id)
         {
             return dbContext.Users.SingleOrDefault(user => user.Id == id);
