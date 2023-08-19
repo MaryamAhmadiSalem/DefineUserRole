@@ -37,9 +37,7 @@ namespace Services
             return dbContext.Users.Select(user => new UserViewModel()
             {
                 Id = user.Id,
-                Name = user.Name,
-                LastName = user.LastName,
-                FullName = user.Name + user.LastName,
+                FullName = user.Name + " " + user.LastName,
                 UserName = user.UserName,
                 Password = user.Password,
                 Age = DateTime.Now.Year - user.DataOfBirth.Year
