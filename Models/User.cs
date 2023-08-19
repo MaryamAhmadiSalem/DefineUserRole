@@ -13,9 +13,9 @@ namespace Models
         public string LastName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public long DataOfBirth { get; set; }
+        public DateTime DataOfBirth { get; set; }
         public List<Role> Roles { get; set; }
-        public User(int id, string name, string lastName, string userName, string password, long dataOfBirth) : base(id)
+        public User(int id, string name, string lastName, string userName, string password, DateTime dataOfBirth) : base(id)
         {
             this.Name = name;
             this.LastName = lastName;

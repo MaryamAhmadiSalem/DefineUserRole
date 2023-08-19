@@ -26,12 +26,12 @@ namespace Services
             }
             return allUsers;
         }
-        public void Create(int id, string name, string lastName, string userName, string password, long dataOfBirth)
+        public void Create(int id, string name, string lastName, string userName, string password, DateTime dataOfBirth)
         {
             dbContext.Users.Add(new User(id, name, lastName, userName, password, dataOfBirth));
             dbContext.SaveChanges();
         }
-        public void Update(int id, string name, string lastName, string userName, string password, long dataOfBirth)
+        public void Update(int id, string name, string lastName, string userName, string password, DateTime dataOfBirth)
         {
             User user = this.GetById(id);
             if (user != null)

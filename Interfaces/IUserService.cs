@@ -11,7 +11,7 @@ namespace Interfaces
     public interface IUserService : IRoleAndUser
     {
         public List<User> Read();
-        public void Create(int id, string name, string lastName, string userName, string password, long dataOfBirth);
-        public void Update(int id, string name, string lastName, string userName, string password, long dataOfBirth);
+        public void Create(int id, string name, string lastName, string userName, string password, DateTime dataOfBirth);
+        public void Update(int id, string name, string lastName, string userName, string password, DateTime dataOfBirth);
     }
 }
