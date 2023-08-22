@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModels;
 
 namespace Services
 {
@@ -18,14 +19,22 @@ namespace Services
             string ConnectionString = "Data Source=DESKTOP-JLPQILD; Initial Catalog=DefineUserRole; Persist Security Info=True;User ID=sa;Password=3861438178_Kaisoo8812";
             dbContext = new DefineUserRoleContext(ConnectionString);
         }
-        public List<Role> Read()
+        public List<RoleViewModel> Read()
         {
-            List<Role> allRoles = dbContext.Roles.ToList();
-            if (allRoles.Count == 0)
+            //List<RoleViewModel> roleModels = new List<RoleViewModel>();
+            //List<Role> allRoles = dbContext.Roles.ToList();
+            //if (allRoles.Count == 0)
+            //{
+            //    Console.WriteLine("The list has no values. Please add some to it.");
+            //}
+            //return allRoles
+            return dbContext.Roles.Select(roles => new RoleViewModel()
             {
-                Console.WriteLine("The list has no values. Please add some to it.");
-            }
-            return allRoles;
+                Id = roles.Id,
+                Name = roles.Name,
+                Description = roles.Description,
+                UserId = roles.UserId,
+            }).ToList();       
         }
         public void Create(int id, string name, string description)
         {

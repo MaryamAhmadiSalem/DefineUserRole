@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Services;
+using ViewModels;
 
 namespace DefineUserRole.Controllers
 {
@@ -13,7 +14,7 @@ namespace DefineUserRole.Controllers
 
         [Route("Read")]
         [HttpGet]
-        public List<Role> Get()
+        public List<RoleViewModel> Get()
         {
             return RoleService.Read();
         }

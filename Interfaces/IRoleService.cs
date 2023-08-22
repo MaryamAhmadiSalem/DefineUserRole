@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModels;
 
 namespace Interfaces
 {
     public interface IRoleService : IRoleAndUser
     {
-        public List<Role> Read();
+        public List<RoleViewModel> Read();
         public void Create(int id, string name, string description);
         public void Update(int id, string name, string description);
         public void AddRoleToUser(int roleId, int userId);
